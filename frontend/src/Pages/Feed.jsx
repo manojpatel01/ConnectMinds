@@ -19,8 +19,11 @@ export default function Feed({ user }) {
         setLoading(false);
       }
     }
+    if (user && user._id) {  // Pehle check karo user hai ya nahi
     getPosts();
-  }, []);
+  }
+    getPosts();
+  }, [user]);
 
   async function handlePostSubmit(e) {
     e.preventDefault();
@@ -36,6 +39,8 @@ export default function Feed({ user }) {
     if (res.data.post) {
       alert("Post created successfully");
     }
+    let newFeed = await axios.get(`${import.meta.env.VITE_API_URL}/posts/feed?user=${user._id}`);
+      setPosts(newFeed.data.posts);
   }
 
   return (
