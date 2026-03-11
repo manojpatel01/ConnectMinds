@@ -6,7 +6,6 @@ export default function Auth({ user,setUser }) {
     let navigate = useNavigate();
 
     useEffect(()=>{
-        console.log("Hi");
       if(user)
       {
         setUser(user);
